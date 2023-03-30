@@ -2,14 +2,13 @@ const close = document.querySelector(".close-popup"),
     newArticle = document.querySelector(".newArticle");
 
 function openPopup(em, name, di) {
-
-    const u = document.getElementById('url');
+    const u = document.getElementById("url");
     u.value = name;
-    const e = document.getElementById('name');
+    const e = document.getElementById("name");
     e.value = em;
-    const d = document.getElementById('description');
+    const d = document.getElementById("description");
     d.value = di;
-    const x = document.getElementById('state');
+    const x = document.getElementById("state");
     x.value = em;
 
     newArticle.classList.add("active");
@@ -26,33 +25,33 @@ function closePopup() {
 let popup = document.querySelector(".newArticle-form ");
 window.addEventListener("resize", () => {
     if (window.innerHeight < 550) {
-        popup.style.cssText = "top:calc(41px + 1rem)";
+        popup.style.cssText = "top:calc(50px + 1rem);margin-bottom:80px;";
     } else {
-        popup.style.cssText = "top:0";
+        popup.style.cssText = "top:0; margin-top:70px";
     }
 });
-let link=document.getElementById("url");
+let link = document.getElementById("url");
 function validateURL(url) {
     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
     return urlRegex.test(url);
 }
 
-let submit=document.querySelector(".newArticleBtn");
-submit.addEventListener("submit",(e)=>{
-    if(!validateURL(link.value)){
+let submit = document.querySelector(".newArticleBtn");
+submit.addEventListener("submit", (e) => {
+    if (!validateURL(link.value)) {
         e.preventDefault();
-        link.style.cssText="border: 1px solid #dc3545;"
-    }else{
-        link.style.cssText="border-color:var(--borderColor)";
+        link.style.cssText = "border: 1px solid #dc3545;";
+    } else {
+        link.style.cssText = "border-color:var(--borderColor)";
     }
-})
-if(link !=null){
-    link.addEventListener("change",(e)=>{
-        if(!validateURL(link.value)){
+});
+if (link != null) {
+    link.addEventListener("change", (e) => {
+        if (!validateURL(link.value)) {
             e.preventDefault();
-            link.style.cssText="border: 1px solid #dc3545";
-        }else{
-            link.style.cssText="border-color:var(--borderColor)";
+            link.style.cssText = "border: 1px solid #dc3545";
+        } else {
+            link.style.cssText = "border-color:var(--borderColor)";
         }
-    })
+    });
 }

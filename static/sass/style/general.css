@@ -473,7 +473,8 @@ p {
   color: var(--light-gray);
   font-weight: 500;
 }
-.profle__nav .profile .nav-search {
+
+.nav-search {
   background-color: var(--secondaryBgColor);
 }
 
