@@ -87,6 +87,8 @@
     
 }
 
-.nav-search{
-    background-color: var(--secondaryBgColor);
+.nav-search,
+.nav-search:focus{
+    background-color: var(--secondaryBgColor) !important;
+    color: var(--text-color) !important;
 }

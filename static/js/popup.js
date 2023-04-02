@@ -23,13 +23,16 @@ function closePopup() {
 }
 // خلصني و اشتغل
 let popup = document.querySelector(".newArticle-form ");
-window.addEventListener("resize", () => {
+let heightAdjustment = () => {
     if (window.innerHeight < 550) {
         popup.style.cssText = "top:calc(50px + 1rem);margin-bottom:80px;";
     } else {
         popup.style.cssText = "top:0; margin-top:70px";
     }
-});
+};
+window.addEventListener("resize", heightAdjustment);
+window.addEventListener("load", heightAdjustment);
+
 let link = document.getElementById("url");
 function validateURL(url) {
     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;

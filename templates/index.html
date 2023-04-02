@@ -32,6 +32,7 @@
 <title>linky</title>
 
 </head>
+
 <body>
   {% comment %} <a href="{% url 'test' %}">test load</a> {% endcomment %}
   <!-- start nav section -->
@@ -46,21 +47,21 @@
       <div class="collapse navbar-collapse  justify-content-end" id="navbarText">
         <form class="d-flex " role="search" action="search" method="POST">
           {% csrf_token %}
-          <input class="form-control me-2 nav-search" type="search" placeholder="Search" aria-label="Search" name="search">
+          <input class="form-control me-2 nav-search" type="search" placeholder="Search" aria-label="Search"
+            name="search">
           <input class="btn btn-outline-success" type="submit" value="Search">
         </form>
         {% if request.user.is_authenticated%}
         <ul class="navbar-nav mx-lg-3">
           <li class="nav-item dropdown ">
-            <a class="nav-link dropdown-toggle text-capitalize" href="#" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false"
-              style="min-width: 120px; text-align: center;">
+            <a class="nav-link dropdown-toggle text-capitalize text-lg-center text-left " href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 120px;">
               {{request.user}}
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item " onclick="openPopup1()" href="#">
                   <i class="fal fa-plus me-1"></i>
-                  <span class="text-capitalize" >add article</span>
+                  <span class="text-capitalize">add article</span>
                 </a></li>
               <li><a class="dropdown-item" href="{% url 'profile' %}">
                   <i class="fas fa-user me-1"></i>
@@ -73,7 +74,7 @@
             </ul>
           </li>
         </ul>
-        
+
         {% else %}
         <div class="button d-flex mt-3 mt-lg-0 justify-content-between">
           <a href="{% url 'register' %}" class="btn signIn me-lg-2">
@@ -105,7 +106,7 @@
         </a>
         {% comment %} <a href="{% url 'send' %}">send</a> {% endcomment %}
         <ul class="list-unstyled border-bottom ps-0">
-         
+
           {%for cat in categories %}
           <li class="mb-1">
             <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
@@ -116,24 +117,26 @@
               <ul class="btn-toggle-nav list-unstyled fw-normal ps-5 pb-1 small">
                 {% for product in products %}
                 {% if product.category == cat.name %}
-                <li><a href="#" class="link-dark rounded"><a href="{% url 'visit_action' name1=product.name%}">{{product.name}}</a></a></li>
-                  {% endif %}
+                <li><a href="#" class="link-dark rounded"><a
+                      href="{% url 'visit_action' name1=product.name%}">{{product.name}}</a></a></li>
+                {% endif %}
                 {% endfor %}
               </ul>
             </div>
           </li>
-            {% comment %} <li><a href="{% url "category" id_=cat.name%}" class="link-dark rounded">{{cat.name}}</a></li> {% endcomment %}
+          {% comment %} <li><a href="{% url " category" id_=cat.name%}" class="link-dark rounded">{{cat.name}}</a></li>
+          {% endcomment %}
           {%endfor %}
         </ul>
-    
+
       </div>
 
     </aside>
     <div class=" col-12 landing__content">
-      <div class="search">
+      <div class="search text-center">
         <h1>Welcome to linky!</h1>
         <h3>Get Your Link Now..</h3>
-        <form class="d-flex mt-5 mx-auto  position-relative w-75" role="search" action="search" method="POST" >
+        <form class="d-flex mt-5 mx-auto  position-relative w-75" role="search" action="search" method="POST">
           {% csrf_token %}
           <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search" name='search'>
           <input class="btn btn-outline-success" type="submit" value="Search">
@@ -158,7 +161,7 @@
             </div>
             <div class="article__favorite col-1 d-flex justify-content-center">
               <a>
-                
+
                 <i id="{{product.name}}" class="fal fa-heart addToFavorite" onclick="clicked('{{product.name}}',)"></i>
               </a>
             </div>
@@ -181,46 +184,46 @@
 
         </div>
 
-        
-          {%endfor %}
-        
+
+        {%endfor %}
+
       </div>
     </div>
   </section>
   <!-- end top article -->
-<!-- Add new Article -->
-<section class="position-fixed newArticle">
-  <form class="position-relative newArticle-form" method="post" action="add_article">
-    {%csrf_token %}
-    <i class="fas fa-times close-popup" onclick="closePopup()"></i>
-    <div class="form-group">
-      <label for="title">URL</label>
-      <input type="text" class="form-control" id="url" name="url">
-    </div>
-    <div class="form-group">
-      <label for="title">name</label>
-      <input type="text" class="form-control" id="name" name="name">
-    </div>
-    <div class="form-group">
-      <label for="description">description</label>
-      <textarea class="form-control" id="description" rows="3" name="description"></textarea>
-    </div>
-    <label for="category">categroy</label>
-    <select class="form-control" id="category" name="category"> 
-      {% for category in categories %}
+  <!-- Add new Article -->
+  <section class="position-fixed newArticle">
+    <form class="position-relative newArticle-form" method="post" action="add_article">
+      {%csrf_token %}
+      <i class="fas fa-times close-popup" onclick="closePopup()"></i>
+      <div class="form-group">
+        <label for="title">URL</label>
+        <input type="text" class="form-control" id="url" name="url">
+      </div>
+      <div class="form-group">
+        <label for="title">name</label>
+        <input type="text" class="form-control" id="name" name="name">
+      </div>
+      <div class="form-group">
+        <label for="description">description</label>
+        <textarea class="form-control" id="description" rows="3" name="description"></textarea>
+      </div>
+      <label for="category">categroy</label>
+      <select class="form-control" id="category" name="category">
+        {% for category in categories %}
         <option>{{category.name}}</option>
-      {% endfor %}
-    </select>
-    </div>
-    <div class="newArticle-form-submit">
-      <textarea id="state" name="state" value="new" hidden></textarea>
-      <button type="submit" class="btn newArticleBtn me-auto ">Submit</button>
-    </div>
-  </form>
-</section>
-<!-- Add new Article -->
+        {% endfor %}
+      </select>
+      </div>
+      <div class="newArticle-form-submit">
+        <textarea id="state" name="state" value="new" hidden></textarea>
+        <button type="submit" class="btn newArticleBtn me-auto ">Submit</button>
+      </div>
+    </form>
+  </section>
+  <!-- Add new Article -->
   <!-- Optional JavaScript -->
- 
+
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
   <script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>

@@ -282,8 +282,10 @@ p {
   font-weight: 500;
 }
 
-.nav-search {
-  background-color: var(--secondaryBgColor);
+.nav-search,
+.nav-search:focus {
+  background-color: var(--secondaryBgColor) !important;
+  color: var(--text-color) !important;
 }
 
 .search {
@@ -292,7 +294,6 @@ p {
   width: 100%;
   position: relative;
   z-index: 99;
-  text-align: center;
 }
 .search h1 {
   color: #fff;
